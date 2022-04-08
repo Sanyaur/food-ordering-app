@@ -4,8 +4,9 @@ import classes from "./HeaderCartButton.module.css";
 
 export const HeaderCartButton = (props) => {
   const { button, icon, badge } = classes;
+
   return (
-    <button className={button}>
+    <button className={button} onClick={props.onShowCart}>
       <span className={icon}>
         <CartIcon />
       </span>

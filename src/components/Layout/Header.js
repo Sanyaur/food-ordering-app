@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Header.module.css";
 import { HeaderCartButton } from "./HeaderCartButton";
 
-const Header = () => {
+const Header = (props) => {
   let mainImageUrl =
     "https://images.unsplash.com/photo-1576866209830-589e1bfbaa4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
 
@@ -10,7 +10,7 @@ const Header = () => {
     <>
       <header className={classes.header}>
         <h1>SandorMeals</h1>
-        <HeaderCartButton />
+        <HeaderCartButton onShowCart={props.onShowCart} />
       </header>
       <div>
         {/* TODO: make it parallax with JS (multiparallax effect) */}
