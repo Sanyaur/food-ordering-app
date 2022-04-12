@@ -8,7 +8,7 @@ const initialValue = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "":
+    case "ADD":
       return {
         // returns a brand new array which considered a better way of handling state (?)
         items: state.items.concat(action.item),
@@ -23,8 +23,7 @@ const reducer = (state, action) => {
 const CartProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialValue);
 
-  const addItemToCartHandler = (item) =>
-    dispatch({ type: "ADD", items: { id: item.id, item: item } });
+  const addItemToCartHandler = (item) => dispatch({ type: "ADD", item: item });
 
   const removeItemFromCartHandler = (id) =>
     dispatch({ type: "REMOVE", id: id });
