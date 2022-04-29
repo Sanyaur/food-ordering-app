@@ -5,13 +5,16 @@ import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
 
 const Cart = (props) => {
-  const { items, totalAmount } = useContext(CartContext);
+  const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
 
   const hasItems = items.length > 0;
 
-  const cartItemRemoveHandler = (id) => {};
-
-  const cartItemAddHandler = (item) => {};
+  const cartItemRemoveHandler = (id) => {
+    removeItem(id);
+  };
+  const cartItemAddHandler = (item) => {
+    addItem({ ...item, amount: 1 });
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
