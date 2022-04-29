@@ -37,6 +37,34 @@ const reducer = (state, action) => {
         items: updatedItems,
       };
 
+    case "REMOVE":
+      const removableProduct = state.items.find(
+        (item) => item.id === action.payload
+      );
+      const removeIndex = state.items.findIndex(
+        (product) => product.id === action.payload
+      );
+
+      console.log(removableProduct);
+
+      let updatedProducts;
+      if (removableProduct.amount > 1) {
+        updatedProducts = [...state.items];
+        updatedProducts[removeIndex] = {
+          ...removableProduct,
+          amount: removableProduct.amount - 1,
+        };
+      } else {
+        updatedProducts = state.items.filter(
+          (product) => product.id !== action.payload
+        );
+      }
+
+      return {
+        ...state,
+        totalAmount: state.totalAmount - removableProduct.price,
+        items: updatedProducts,
+      };
     default:
       return initialValue;
   }
@@ -48,7 +76,7 @@ const CartProvider = (props) => {
     dispatch({ type: "ADD", payload: item });
 
   const removeItemFromCartHandler = (id) =>
-    dispatch({ type: "REMOVE", id: id });
+    dispatch({ type: "REMOVE", payload: id });
 
   const cartContext = {
     items: state.items,
